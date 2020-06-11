@@ -24,11 +24,12 @@ const bfs = function (pairs, source, target) {
 
   while (toVisit.length !== 0) {
     const current_verex = toVisit.shift();
+    const neighbors = graph[current_verex] || new Set();
     visited.add(current_verex);
-    if (graph[current_verex].has(target)) {
+    if (neighbors.has(target)) {
       return true;
     }
-    const neighborsToVisit = Array.from(graph[current_verex]).filter(
+    const neighborsToVisit = Array.from(neighbors).filter(
       isRemaining.bind(null, toVisit, visited)
     );
     toVisit.push(...neighborsToVisit);

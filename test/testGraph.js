@@ -29,6 +29,7 @@ describe("#bfs", () => {
     ["B", "A"],
     ["C", "B"],
     ["D", "B"],
+    ["D", "E"],
   ];
 
   it("shouldn't find path if there is no path from source to destination", () => {
@@ -43,7 +44,11 @@ describe("#bfs", () => {
     assert.ok(!bfs(pairs, "D", "D"));
   });
 
-  it("shouldn find path when there is path that comes back to the same source", () => {
+  it("should find path when there is path that comes back to the same source", () => {
     assert.ok(bfs(pairs, "C", "C"));
+  });
+
+  it("shouldn't find path when source vertex doesn't have any edge going outside", () => {
+    assert.ok(!bfs(pairs, "E", "A"));
   });
 });
