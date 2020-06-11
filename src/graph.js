@@ -1,11 +1,18 @@
-//Example 
+//Example
 // Pairs => [[from,to],[to,from]]
 // Source => from
-// To => to 
+// To => to
 // Should return true.
 
-const bfs = function(pairs,source,target){
-  
+const generateGraph = function (pairs) {
+  const nodes = {};
+  pairs.forEach(([from, to]) => {
+    !nodes[from] && (nodes[from] = new Set());
+    nodes[from].add(to);
+  });
+  return nodes;
 };
 
-module.exports = {bfs};
+const bfs = function (pairs, source, target) {};
+
+module.exports = { bfs, generateGraph };
