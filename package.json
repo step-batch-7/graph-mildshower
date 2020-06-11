@@ -1,0 +1,22 @@
+{
+  "name": "graph-mildshower",
+  "version": "1.0.0",
+  "description": "",
+  "main": "",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "nyc mocha --color"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/step-batch-7/graph-mildshower.git"
+  },
+  "author": "Sudipta",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/step-batch-7/graph-mildshower/issues"
+  },
+  "homepage": "https://github.com/step-batch-7/graph-mildshower#readme"
+}
