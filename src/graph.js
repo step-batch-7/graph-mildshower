@@ -22,8 +22,7 @@ const bfs = function (pairs, source, target) {
   const toVisit = [source];
   const visited = new Set();
 
-  let a = 10;
-  while (toVisit.length !== 0 && a > 0) {
+  while (toVisit.length !== 0) {
     const current_verex = toVisit.shift();
     visited.add(current_verex);
     if (graph[current_verex].has(target)) {
@@ -33,7 +32,6 @@ const bfs = function (pairs, source, target) {
       isRemaining.bind(null, toVisit, visited)
     );
     toVisit.push(...neighborsToVisit);
-    a--;
   }
 
   return false;
