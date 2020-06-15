@@ -58,4 +58,25 @@ const dfs = function (pairs, source, target) {
   return isPathPresent(graph, visited, target, source);
 };
 
-module.exports = { bfs, generateGraph, dfs };
+const findPath = function (graph, visited, source, target) {
+  const neighbors = graph[source] || new Set();
+  const neighborsToVisit = Array.from(neighbors).filter(
+    (currentVerex) => !visited.has(currentVerex)
+  );
+  if (neighborsToVisit.length === 0) {
+    return [];
+  }
+  paths = neighborsToVisit.reduce((paths, vertex) => {
+    if (vertex === target) {
+      paths.push([target]);
+    } else {
+      visited.add(vertex);
+      paths.push(...findPath(graph, visited, vertex, target));
+    }
+    return paths;
+  }, []);
+  paths.forEach((path) => path.unshift(source));
+  return paths;
+};
+
+module.exports = { bfs, generateGraph, dfs, findPath };
