@@ -38,4 +38,24 @@ const bfs = function (pairs, source, target) {
   return false;
 };
 
-module.exports = { bfs, generateGraph };
+const isPathPresent = function (graph, visited, target, source) {
+  const neighbors = graph[source] || new Set();
+  if (neighbors.has(target)) {
+    return true;
+  }
+  const neighborsToVisit = Array.from(neighbors).filter(
+    (currentVerex) => !visited.has(currentVerex)
+  );
+  neighborsToVisit.forEach(visited.add.bind(visited));
+  return neighborsToVisit.some(
+    isPathPresent.bind(null, graph, visited, target)
+  );
+};
+
+const dfs = function (pairs, source, target) {
+  const graph = generateGraph(pairs);
+  const visited = new Set();
+  return isPathPresent(graph, visited, target, source);
+};
+
+module.exports = { bfs, generateGraph, dfs };

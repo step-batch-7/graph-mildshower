@@ -1,5 +1,5 @@
 const assert = require("assert");
-const { generateGraph, bfs } = require("../src/graph");
+const { generateGraph, bfs, dfs } = require("../src/graph");
 
 describe("#generateGraph", () => {
   it("should give empty object if empty list is given", () => {
@@ -50,5 +50,36 @@ describe("#bfs", () => {
 
   it("shouldn't find path when source vertex doesn't have any edge going outside", () => {
     assert.ok(!bfs(pairs, "E", "A"));
+  });
+});
+
+describe("#dfs", () => {
+  const pairs = [
+    ["A", "B"],
+    ["B", "C"],
+    ["B", "A"],
+    ["C", "B"],
+    ["D", "B"],
+    ["D", "E"],
+  ];
+
+  it("shouldn't find path if there is no path from source to destination", () => {
+    assert.ok(!dfs(pairs, "C", "D"));
+  });
+
+  it("should find path if there is path from source to destination", () => {
+    assert.ok(dfs(pairs, "D", "A"));
+  });
+
+  it("shouldn't find path when there is no path that comes back to the same source", () => {
+    assert.ok(!dfs(pairs, "D", "D"));
+  });
+
+  it("should find path when there is path that comes back to the same source", () => {
+    assert.ok(dfs(pairs, "C", "C"));
+  });
+
+  it("shouldn't find path when source vertex doesn't have any edge going outside", () => {
+    assert.ok(!dfs(pairs, "E", "A"));
   });
 });
