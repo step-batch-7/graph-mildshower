@@ -72,8 +72,7 @@ const findPath = function (graph, visited, source, target) {
     }
     return paths;
   }, []);
-  paths.forEach((path) => path.unshift(source));
-  return paths;
+  return paths.map((path) => [source].concat(path));
 };
 
 module.exports = { bfs, generateGraph, dfs, findPath };
