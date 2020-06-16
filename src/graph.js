@@ -63,9 +63,6 @@ const findPath = function (graph, visited, source, target) {
   const neighborsToVisit = Array.from(neighbors).filter(
     (currentVerex) => !visited.has(currentVerex)
   );
-  if (neighborsToVisit.length === 0) {
-    return [];
-  }
   paths = neighborsToVisit.reduce((paths, vertex) => {
     if (vertex === target) {
       paths.push([target]);
